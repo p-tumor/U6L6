@@ -30,7 +30,13 @@ public class ArrayAlgorithms {
      */
     public static boolean containsString(String[] stringList, String searchStr)
     {
-        for(String s: stringList) if (s.equals(searchStr)) return true;
+        searchStr = searchStr.toLowerCase();
+        for(String s: stringList){
+            s = s.toLowerCase();
+            if (s.contains(searchStr)) {
+                return true;
+            }
+        }
         return false;
     }
     /** Returns a NEW array of Strings that contains all words from the original
@@ -68,6 +74,7 @@ public class ArrayAlgorithms {
         for(int i = 0; i < maximums.length; i++) {
             maximums[i] = Math.max(intArr1[i], intArr2[i]);
         }
+        return maximums;
     }
     /** Returns the number of Strings in stringList that have an exclamation point
      *  ("!") at the end.
@@ -102,13 +109,14 @@ public class ArrayAlgorithms {
     public static int countConsecutiveDoubles(int[] numList)
     {
         int count = 0;
-        int currentNumber = 
+        int currentNumber = numList[0];
         int nextNumber;
         for(int i = 1;i<numList.length;i++){
-            currentNumber = i;
-            nextNumber = i+1;
-            if (currentNumber)
+            nextNumber = numList[i];
+            if (currentNumber == nextNumber) count ++;
+            else currentNumber = nextNumber;
         }
+        return count;
     }
     /** Returns a NEW array that contains all elements of the original numList,
      *  shifted to the left by one index; the first element of the array should
@@ -123,8 +131,21 @@ public class ArrayAlgorithms {
      *  @return  array with elements in numList shifted by one index left
      */
     public static int[] shiftLeft(int[] numList)
-    { /* implement this method! */ }
-
+    {
+        int[] numListShiftedLeft = new int[numList.length];
+        for(int i = 0;i < numList.length;i++){
+            if (i-1 == -1){
+                numListShiftedLeft[numList.length-1] = numList[0];
+                i++;
+            }
+            numListShiftedLeft[i-1] = numList[i];
+        }
+        return numListShiftedLeft;
+    }
+    public static void shiftLeftModify(int[] numList)
+    {
+        numList = shiftLeft(numList);
+    }
 
 
 }
