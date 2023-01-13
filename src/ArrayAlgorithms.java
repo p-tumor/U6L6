@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ArrayAlgorithms {
     // ADD THE FOLLOWING METHODS TO THE OTHERS IN THIS CLASS!
 
@@ -144,7 +146,16 @@ public class ArrayAlgorithms {
     }
     public static void shiftLeftModify(int[] numList)
     {
-        numList = shiftLeft(numList);
+        int temp = numList[numList.length-1];
+        for(int i = 0;i < numList.length;i++){
+            if (i == 0) {
+                numList[numList.length-1] = numList[0];
+                i++;
+            }
+            numList[i-1] = numList[i];
+            System.out.println(Arrays.toString(numList));
+            if(i == numList.length-1) numList[numList.length-2] = temp;
+        }
     }
 
 
